@@ -1,39 +1,53 @@
-import * as express from 'express';
-import { AppDataSource } from './data-source';
-import * as bodyParser from 'body-parser';
-import { Request, Response } from 'express';
-import { Routes } from './routes';
-import config from './configuration/config';
-import uploadConfig from './configuration/upload';
-// create express app
+import * as express from "express";
+import { Request, Response } from "express";
+import "express-async-errors";
+import { AppDataSource } from "./data-source";
+import config from "./configuration/config";
+import uploadConfig from "./configuration/upload";
+// import { Routes } from "./routes";
+import routes from "./routes";
+import AppError from "./errors/AppError";
+// import AppError from "./errors/AppError";
+// import auth from "./configuration/auth";
+// import auth from "./middleware/auth";
+
+import "./providers";
+
 const app = express();
-app.use(bodyParser.json());
-app.use('/files', express.static(uploadConfig.uploadsFolder));
 
-// register express routes from defined application routes
-Routes.forEach((route) => {
-  (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
-    const result = new (route.controller as any)()[route.action](req, res, next);
-    if (result instanceof Promise) {
-      result.then((result) =>
-        result !== null && result !== undefined ? res.send(result) : undefined
-      );
-    } else if (result !== null && result !== undefined) {
-      res.json(result);
+// app.use(cors());
+app.use(express.json());
+app.use("/files", express.static(uploadConfig.uploadsFolder));
+app.use(routes);
+
+app.use(
+  (
+    err: Error,
+    request: Request,
+    response: Response,
+    _: express.NextFunction
+  ) => {
+    if (err instanceof AppError) {
+      return response.status(err.statusCode).json({
+        status: "error",
+        message: err.message,
+      });
     }
-  });
-});
+    console.error(err);
 
-// setup express app here
-// ...
+    return response.status(500).json({
+      status: "error",
+      message: "Internal Server Error",
+    });
+  }
+);
 
-// start express server
 app.listen(config.port, async () => {
   console.log(`API has started on port ${config.port}`);
   try {
     await AppDataSource.initialize();
-    console.log('Database connected');
+    console.log("Database connected");
   } catch (error) {
-    console.log('Database not connected');
+    console.log("Database not connected");
   }
 });

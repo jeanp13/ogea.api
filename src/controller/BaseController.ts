@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { getRepository, Repository } from "typeorm";
+import { AppDataSource } from "../data-source";
 import { BaseNotification } from "../entities/BaseNotification";
 
 export abstract class BaseController<T> extends BaseNotification {
@@ -7,7 +8,7 @@ export abstract class BaseController<T> extends BaseNotification {
 
   constructor(entityName: any) {
     super();
-    this._repository = getRepository<T>(entityName);
+    this._repository = AppDataSource.getRepository<T>(entityName);
   }
 
   async all(model: any) {
@@ -41,5 +42,9 @@ export abstract class BaseController<T> extends BaseNotification {
     }
     return this._repository.save(model);
     // await this._repository.remove(userToRemove);
+  }
+
+  get repository(): Repository<T> {
+    return this._repository;
   }
 }

@@ -14,15 +14,18 @@ export abstract class BaseNotification {
   }
 
   isRequired(value, message) {
-    if (!value || value.length <= 0) this.notifications.push({ message: message });
+    if (!value || value.length <= 0)
+      this.notifications.push({ message: message });
   }
 
   hasMinLen(value, min, message) {
-    if (!value || value.length < min) this.notifications.push({ message: message });
+    if (!value || value.length < min)
+      this.notifications.push({ message: message });
   }
 
   hasMaxLen(value, max, message) {
-    if (!value || value.length > max) this.notifications.push({ message: message });
+    if (!value || value.length > max)
+      this.notifications.push({ message: message });
   }
 
   isFixedLen(value, len, message) {
