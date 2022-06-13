@@ -1,5 +1,4 @@
-import ICreateUserDTO from "../../../dtos/ICreateUserDTO";
-import IFindAllProvidersDTO from "../../../dtos/IFindAllProvidersDTO";
+import ICreateUserDTO from "../dtos/ICreateUserDTO";
 import { User } from "../typeorm/entities/User";
 
 export default interface IUsersRepository {

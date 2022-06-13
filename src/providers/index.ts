@@ -6,6 +6,10 @@ import UserTokenRepository from "../modules/users/typeorm/repositories/UserToken
 import BCryptHashProvider from "./HashProvider/implementations/BCryptHashProvider";
 import IHashProvider from "./HashProvider/models/IHashProvider";
 
+import "./StorageProvider";
+import "./MailTemplateProvider";
+import "./MailProvider";
+
 container.registerSingleton<IHashProvider>("HashProvider", BCryptHashProvider);
 container.registerSingleton<IHashProvider>("HashProvider", BCryptHashProvider);
 

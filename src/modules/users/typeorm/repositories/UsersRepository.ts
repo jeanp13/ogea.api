@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../data-source";
-import ICreateUserDTO from "../../../../dtos/ICreateUserDTO";
+import ICreateUserDTO from "../../dtos/ICreateUserDTO";
 import IUsersRepository from "../../repositories/IUsersRepository";
 import { User } from "../entities/User";
 
