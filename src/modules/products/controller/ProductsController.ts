@@ -1,24 +1,18 @@
-import { Request, Response } from 'express';
-import { container } from 'tsyringe';
+import { Request, Response } from "express";
+import { container } from "tsyringe";
 
-import { classToClass } from 'class-transformer';
-import CreateProductService from '@modules/products/services/CreateProductService';
-import UpdateProductService from '@modules/products/services/UpdateProductService';
-import ShowProductsService from '@modules/products/services/ShowProductsService';
-import ShowProductsCategoryService from '@modules/products/services/ShowProductsCategoryService';
-import ReturnProductService from '@modules/products/services/ReturnProductService';
+import { classToClass } from "class-transformer";
+import CreateProductService from "../services/CreateProductService";
+import ReturnProductService from "../services/ReturnProductService";
+import ShowProductsCategoryService from "../services/ShowProductsCategoryService";
+import ShowProductsService from "../services/ShowProductsService";
+import UpdateProductService from "../services/UpdateProductService";
 
 export default class ProductsController {
   public async create(request: Request, response: Response): Promise<Response> {
     try {
-      const {
-        amount,
-        category_id,
-        description,
-        price,
-        title,
-        code,
-      } = request.body;
+      const { amount, category_id, description, price, title, code } =
+        request.body;
       const user_id = request.user.id;
       const createProduct = container.resolve(CreateProductService);
 
@@ -29,7 +23,7 @@ export default class ProductsController {
         price,
         title,
         user_id,
-        photo_url: '',
+        photo_url: "",
         code,
       });
 
@@ -41,14 +35,8 @@ export default class ProductsController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     try {
-      const {
-        amount,
-        category_id,
-        description,
-        price,
-        title,
-        code,
-      } = request.body;
+      const { amount, category_id, description, price, title, code } =
+        request.body;
       // console.log(request.file.filename);
       let photo_url = null;
       if (request.file) photo_url = request.file.filename;
@@ -104,12 +92,12 @@ export default class ProductsController {
 
   public async showByCategory(
     request: Request,
-    response: Response,
+    response: Response
   ): Promise<Response> {
     try {
       const { category_id } = request.params;
       const showProductsCategory = container.resolve(
-        ShowProductsCategoryService,
+        ShowProductsCategoryService
       );
 
       const products = await showProductsCategory.execute({ category_id });

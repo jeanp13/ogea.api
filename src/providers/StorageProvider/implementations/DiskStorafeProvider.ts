@@ -1,6 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import uploadConfig from '@config/upload';
+import * as fs from 'fs';
+import * as path from 'path';
+import uploadConfig from '../../../configuration/upload';
 import IStorageProvider from '../models/IStorageProvider';
 
 export default class DiskStorageProvider implements IStorageProvider {

@@ -1,9 +1,10 @@
-import fs from 'fs';
-import path from 'path';
-import aws, { S3 } from 'aws-sdk';
-import mime from 'mime';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as aws from 'aws-sdk';
+import { S3 } from 'aws-sdk';
+import * as mime from 'mime-types';
 
-import uploadConfig from '@config/upload';
+import uploadConfig from '../../../configuration/upload';
 import IStorageProvider from '../models/IStorageProvider';
 
 export default class DiskStorageProvider implements IStorageProvider {
