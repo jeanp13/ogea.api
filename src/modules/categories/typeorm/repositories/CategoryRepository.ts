@@ -1,8 +1,8 @@
-import { Repository } from "typeorm";
-import { AppDataSource } from "../../../../data-source";
-import ICreateCategoryDTO from "../../dtos/ICreateCategoryDTO";
-import ICategoryRepository from "../../repositories/ICategoryRepository";
-import Category from "../entities/Category";
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../../../../data-source';
+import ICreateCategoryDTO from '../../dtos/ICreateCategoryDTO';
+import ICategoryRepository from '../../repositories/ICategoryRepository';
+import Category from '../entities/Category';
 
 class CategoryRepository implements ICategoryRepository {
   private ormRepository: Repository<Category>;
@@ -39,7 +39,7 @@ class CategoryRepository implements ICategoryRepository {
 
   public async listAll(): Promise<Category[] | undefined> {
     const categories = await this.ormRepository.find({
-      relations: ["products"],
+      relations: ['products'],
     });
 
     return categories;

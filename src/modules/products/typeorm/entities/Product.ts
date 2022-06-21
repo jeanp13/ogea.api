@@ -1,4 +1,4 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -7,14 +7,14 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import { Category } from "../../../../entities/Category";
-import { User } from "../../../users/typeorm/entities/User";
-import uploadConfig from "../../../../configuration/upload";
+} from 'typeorm';
+import { User } from '../../../users/typeorm/entities/User';
+import uploadConfig from '../../../../configuration/upload';
+import Category from '../../../categories/typeorm/entities/Category';
 
-@Entity("products")
+@Entity('products')
 class Product {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -47,25 +47,25 @@ class Product {
   user_id: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @Column()
   category_id: string;
 
   @ManyToOne(() => Category, { cascade: true })
-  @JoinColumn({ name: "category_id" })
+  @JoinColumn({ name: 'category_id' })
   category: Category;
 
-  @Expose({ name: "photo" })
+  @Expose({ name: 'photo' })
   getPhoto(): string | null {
     if (!this.photo_url) {
       return null;
     }
     switch (uploadConfig.driver) {
-      case "disk":
+      case 'disk':
         return `${process.env.APP_API_URL}/files/${this.photo_url}`;
-      case "s3":
+      case 's3':
         return `https://${uploadConfig.config.aws.bucket}.s3.amazonaws.com/${this.photo_url}`;
       default:
         return null;

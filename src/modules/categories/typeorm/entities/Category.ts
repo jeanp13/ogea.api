@@ -1,4 +1,4 @@
-import { Exclude, Expose } from "class-transformer";
+import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -6,21 +6,21 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import { Product } from "../../../../entities/Product";
+} from 'typeorm';
+import Product from '../../../products/typeorm/entities/Product';
 
-@Entity("categories")
+@Entity('categories')
 class Category {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   title: string;
 
-  @OneToMany(() => Product, (product) => product.category)
+  @OneToMany(() => Product, product => product.category)
   products: Product[];
 
-  @Expose({ name: "products" })
+  @Expose({ name: 'products' })
   getProducts(): Product[] | null {
     return this.products;
   }

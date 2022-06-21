@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { classToClass } from "class-transformer";
-import CreateCategoryService from "../services/CreateCategoryService";
-import ShowCategoriesService from "../services/ShowCategoriesService";
+import { classToClass } from 'class-transformer';
+import CreateCategoryService from '../services/CreateCategoryService';
+import ShowCategoriesService from '../services/ShowCategoriesService';
 
 export default class CategoriesController {
   public async create(request: Request, response: Response): Promise<Response> {

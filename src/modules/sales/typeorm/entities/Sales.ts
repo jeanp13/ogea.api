@@ -6,14 +6,14 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from "typeorm";
-import { PaymentMethod } from "../../../../entities/PaymentMethod";
-import { Product } from "../../../../entities/Product";
-import { User } from "../../../users/typeorm/entities/User";
+} from 'typeorm';
+import PaymentMethod from '../../../payments_method/typeorm/entities/PaymentMethod';
+import Product from '../../../products/typeorm/entities/Product';
+import { User } from '../../../users/typeorm/entities/User';
 
-@Entity("sales")
+@Entity('sales')
 class Sales {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -38,21 +38,21 @@ class Sales {
   user_id: string;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: "user_id" })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @Column()
   product_id: string;
 
   @ManyToOne(() => Product)
-  @JoinColumn({ name: "product_id" })
+  @JoinColumn({ name: 'product_id' })
   product: Product;
 
   @Column()
   payment_method_id: string;
 
   @ManyToOne(() => PaymentMethod)
-  @JoinColumn({ name: "payment_method_id" })
+  @JoinColumn({ name: 'payment_method_id' })
   payment_method: PaymentMethod;
 
   @CreateDateColumn()

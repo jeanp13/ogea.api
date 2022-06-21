@@ -1,7 +1,7 @@
-import { Repository } from "typeorm";
-import { AppDataSource } from "../../../../data-source";
-import { UserToken } from "../../../../entities/UserToken";
-import IUserTokensRepository from "../../repositories/IUserTokensRepository";
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../../../../data-source';
+import IUserTokensRepository from '../../repositories/IUserTokensRepository';
+import { UserToken } from '../entities/UserToken';
 
 class UserTokenRepository implements IUserTokensRepository {
   private ormRepository: Repository<UserToken>;
