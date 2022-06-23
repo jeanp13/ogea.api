@@ -21,7 +21,7 @@ export default class DiskStorageProvider implements IStorageProvider {
     const originalPath = path.resolve(uploadConfig.tmpFolder, file);
 
     const fileContent = await fs.promises.readFile(originalPath);
-    const ContentType = mime.getType(originalPath);
+    const ContentType = mime.contentType(originalPath);
     if (!ContentType) {
       throw new Error('File not found');
     }
