@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { classToClass } from "class-transformer";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
-import CreateUserService from "../services/CreateUserService";
-import ShowProfileService from "../services/ShowProfileService";
-import UpdateProfileService from "../services/UpdateProfileService";
+import CreateUserService from '../services/CreateUserService';
+import ShowProfileService from '../services/ShowProfileService';
+import UpdateProfileService from '../services/UpdateProfileService';
 
 export class UserController {
   async createUser(request: Request, response: Response): Promise<Response> {
@@ -40,7 +40,7 @@ export class UserController {
 
   public async showAll(
     request: Request,
-    response: Response
+    response: Response,
   ): Promise<Response> {
     try {
       // const user_id = request.user.id;

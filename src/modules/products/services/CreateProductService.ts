@@ -1,8 +1,8 @@
-import { inject, injectable } from "tsyringe";
-import AppError from "../../../errors/AppError";
-import IStorageProvider from "../../../providers/StorageProvider/models/IStorageProvider";
-import IProductsRepository from "../repositories/IProductsRepository";
-import Product from "../typeorm/entities/Product";
+import { inject, injectable } from 'tsyringe';
+import AppError from '../../../errors/AppError';
+import IStorageProvider from '../../../providers/StorageProvider/models/IStorageProvider';
+import IProductsRepository from '../repositories/IProductsRepository';
+import Product from '../typeorm/entities/Product';
 
 interface IRequest {
   description: string;
@@ -17,11 +17,11 @@ interface IRequest {
 @injectable()
 class CreateProductService {
   constructor(
-    @inject("ProductsRepository")
+    @inject('ProductsRepository')
     private productsRepository: IProductsRepository,
 
-    @inject("StorageProvider")
-    private storageProvider: IStorageProvider
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -35,10 +35,10 @@ class CreateProductService {
     code,
   }: IRequest): Promise<Product> {
     const checkUserExists = await this.productsRepository.findByDescription(
-      description
+      description,
     );
     if (checkUserExists) {
-      throw new AppError("Producto já cadastrado.");
+      throw new AppError('Producto já cadastrado.');
     }
     const fileName = await this.storageProvider.saveFile(photo_url);
 

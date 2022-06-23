@@ -28,7 +28,11 @@
       }
     ],
     "prettier/prettier": "error",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "no-param-reassign": "off",
+    "no-useless-constructor": "off",
+    "prefer-regex-literals": "off"
   },
   "settings": {
     "import/resolver": {

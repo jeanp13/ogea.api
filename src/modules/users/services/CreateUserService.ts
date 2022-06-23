@@ -1,19 +1,19 @@
-import { Repository } from "typeorm";
-import { inject, injectable } from "tsyringe";
-import { v4 as uuid } from "uuid";
+import { Repository } from 'typeorm';
+import { inject, injectable } from 'tsyringe';
+import { v4 as uuid } from 'uuid';
 
-import { AppDataSource } from "../../../data-source";
-import AppError from "../../../errors/AppError";
-import IHashProvider from "../models/IHashProvider";
-import { User } from "../typeorm/entities/User";
+import { AppDataSource } from '../../../data-source';
+import AppError from '../../../errors/AppError';
+import IHashProvider from '../models/IHashProvider';
+import { User } from '../typeorm/entities/User';
 
 @injectable()
 class CreateUserService {
   private _repository: Repository<User>;
 
   constructor(
-    @inject("HashProvider")
-    private hashProvider: IHashProvider
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {
     this._repository = AppDataSource.getRepository<User>(User);
   }
@@ -29,7 +29,7 @@ class CreateUserService {
       where: { email },
     });
 
-    if (userRepository) throw new AppError("Email address already used");
+    if (userRepository) throw new AppError('Email address already used');
 
     if (!storeId) {
       storeId = uuid();

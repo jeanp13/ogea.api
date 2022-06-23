@@ -1,8 +1,8 @@
-import { inject, injectable } from "tsyringe";
-import AppError from "../../../errors/AppError";
-import IStorageProvider from "../../../providers/StorageProvider/models/IStorageProvider";
-import IProductsRepository from "../repositories/IProductsRepository";
-import Product from "../typeorm/entities/Product";
+import { inject, injectable } from 'tsyringe';
+import AppError from '../../../errors/AppError';
+import IStorageProvider from '../../../providers/StorageProvider/models/IStorageProvider';
+import IProductsRepository from '../repositories/IProductsRepository';
+import Product from '../typeorm/entities/Product';
 
 interface IRequest {
   product_id: string;
@@ -18,11 +18,11 @@ interface IRequest {
 @injectable()
 class UpdateProductService {
   constructor(
-    @inject("ProductsRepository")
+    @inject('ProductsRepository')
     private productsRepository: IProductsRepository,
 
-    @inject("StorageProvider")
-    private storageProvider: IStorageProvider
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -38,7 +38,7 @@ class UpdateProductService {
   }: IRequest): Promise<Product> {
     const product = await this.productsRepository.findById(product_id);
     if (!product) {
-      throw new AppError("Produto não localizado.");
+      throw new AppError('Produto não localizado.');
     }
     let fileName = product.photo_url;
     if (photo_url) {

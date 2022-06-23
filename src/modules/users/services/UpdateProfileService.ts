@@ -1,8 +1,8 @@
-import { inject, injectable } from "tsyringe";
-import AppError from "../../../errors/AppError";
-import IHashProvider from "../models/IHashProvider";
-import IUsersRepository from "../repositories/IUsersRepository";
-import { User } from "../typeorm/entities/User";
+import { inject, injectable } from 'tsyringe';
+import AppError from '../../../errors/AppError';
+import IHashProvider from '../models/IHashProvider';
+import IUsersRepository from '../repositories/IUsersRepository';
+import { User } from '../typeorm/entities/User';
 
 interface IRequest {
   user_id: string;
@@ -14,11 +14,11 @@ interface IRequest {
 @injectable()
 class UpdateProfileService {
   constructor(
-    @inject("UsersRepository")
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject("HashProvider")
-    private hashProvider: IHashProvider
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -31,26 +31,26 @@ class UpdateProfileService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError("User not found");
+      throw new AppError('User not found');
     }
     const userExists = await this.usersRepository.findByEmail(email);
 
     if (userExists && userExists.id !== user.id) {
-      throw new AppError("Email already in use");
+      throw new AppError('Email already in use');
     }
 
     if (password && !old_password) {
       throw new AppError(
-        "You need to inform the old password to set a new password"
+        'You need to inform the old password to set a new password',
       );
     }
     if (password && old_password) {
       const checkOldPassword = await this.hashProvider.compareHash(
         old_password,
-        user.password
+        user.password,
       );
       if (!checkOldPassword)
-        throw new AppError("The old password it is not correct");
+        throw new AppError('The old password it is not correct');
     }
 
     user.name = name;

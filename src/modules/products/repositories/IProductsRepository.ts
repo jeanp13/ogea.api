@@ -1,5 +1,5 @@
-import ICreateProductDTO from "../dtos/ICreateProductDTO";
-import Product from "../typeorm/entities/Product";
+import ICreateProductDTO from '../dtos/ICreateProductDTO';
+import Product from '../typeorm/entities/Product';
 
 export default interface IProductsRepositoy {
   create(data: ICreateProductDTO): Promise<Product>;

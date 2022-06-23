@@ -3,19 +3,19 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
-} from "typeorm";
+} from 'typeorm';
 
 export abstract class BaseEntity {
-  @PrimaryGeneratedColumn("uuid")
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @UpdateDateColumn({ type: "timestamp", nullable: true })
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updated_at: Date;
 
-  @Column({ type: "timestamp", nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   deleted_at: Date;
 
   @Column({ default: false })

@@ -1,8 +1,8 @@
-import { Repository } from "typeorm";
-import { AppDataSource } from "../../../../data-source";
-import ICreateProductDTO from "../../dtos/ICreateProductDTO";
-import IProductsRepository from "../../repositories/IProductsRepository";
-import Product from "../entities/Product";
+import { Repository } from 'typeorm';
+import { AppDataSource } from '../../../../data-source';
+import ICreateProductDTO from '../../dtos/ICreateProductDTO';
+import IProductsRepository from '../../repositories/IProductsRepository';
+import Product from '../entities/Product';
 
 class ProductsRepository implements IProductsRepository {
   private ormRepository: Repository<Product>;
@@ -49,22 +49,22 @@ class ProductsRepository implements IProductsRepository {
   }
 
   public async findByDescription(
-    description: string
+    description: string,
   ): Promise<Product | undefined> {
     const product = await this.ormRepository.findOne({
       where: { description },
-      relations: ["category"],
+      relations: ['category'],
     });
 
     return product;
   }
 
   public async findByCategory(
-    category_id: string
+    category_id: string,
   ): Promise<Product[] | undefined> {
     const products = await this.ormRepository.find({
       where: { category_id },
-      relations: ["category"],
+      relations: ['category'],
     });
 
     return products;
@@ -72,7 +72,7 @@ class ProductsRepository implements IProductsRepository {
 
   public async listAll(): Promise<Product[] | undefined> {
     const products = await this.ormRepository.find({
-      relations: ["category", "user"],
+      relations: ['category', 'user'],
     });
 
     return products;

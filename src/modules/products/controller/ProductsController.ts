@@ -1,12 +1,12 @@
-import { Request, Response } from "express";
-import { container } from "tsyringe";
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
-import { classToClass } from "class-transformer";
-import CreateProductService from "../services/CreateProductService";
-import ReturnProductService from "../services/ReturnProductService";
-import ShowProductsCategoryService from "../services/ShowProductsCategoryService";
-import ShowProductsService from "../services/ShowProductsService";
-import UpdateProductService from "../services/UpdateProductService";
+import { classToClass } from 'class-transformer';
+import CreateProductService from '../services/CreateProductService';
+import ReturnProductService from '../services/ReturnProductService';
+import ShowProductsCategoryService from '../services/ShowProductsCategoryService';
+import ShowProductsService from '../services/ShowProductsService';
+import UpdateProductService from '../services/UpdateProductService';
 
 export default class ProductsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -23,7 +23,7 @@ export default class ProductsController {
         price,
         title,
         user_id,
-        photo_url: "",
+        photo_url: '',
         code,
       });
 
@@ -92,12 +92,12 @@ export default class ProductsController {
 
   public async showByCategory(
     request: Request,
-    response: Response
+    response: Response,
   ): Promise<Response> {
     try {
       const { category_id } = request.params;
       const showProductsCategory = container.resolve(
-        ShowProductsCategoryService
+        ShowProductsCategoryService,
       );
 
       const products = await showProductsCategory.execute({ category_id });
