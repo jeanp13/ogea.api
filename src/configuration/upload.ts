@@ -1,7 +1,5 @@
-// import path from 'path';
-// import crypto from 'crypto';
-import crypto = require('crypto');
-import path = require('path');
+import * as path from 'path';
+import * as crypto from 'crypto';
 import * as multer from 'multer';
 import { StorageEngine } from 'multer';
 
