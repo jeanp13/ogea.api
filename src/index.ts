@@ -1,7 +1,6 @@
-import * as express from 'express';
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import 'express-async-errors';
-import * as cors from 'cors';
+import cors from 'cors';
 import { AppDataSource } from './data-source';
 import config from './configuration/config';
 import uploadConfig from './configuration/upload';
