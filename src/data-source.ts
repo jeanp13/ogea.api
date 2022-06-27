@@ -12,7 +12,7 @@ import { UserToken } from './modules/users/typeorm/entities/UserToken';
 export const AppDataSource = new DataSource({
   name: 'default',
   type: 'postgres',
-  host: 'localhost',
+  host: process.env.POSTGRES_HOST,
   port: 5432,
   username: 'postgres',
   password: 'docker',

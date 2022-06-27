@@ -1,6 +1,8 @@
 import * as path from 'path';
 import * as crypto from 'crypto';
-import multer, { StorageEngine } from 'multer';
+import { StorageEngine } from 'multer';
+import * as multer from 'multer';
+// import multer from 'multer';
 // import multer = require('multer');
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
