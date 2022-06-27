@@ -42,6 +42,26 @@ jobs:
           source: "."
           target: "/www/ogea.api/"
 
+      - name: Install dependencias
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          scripts: |
+            cd /www/ogea.api/
+            yarn
+
+      - name: Install dependencias
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          scripts: pm2 restart 
+
       #instalar as dependencias
       #executar a build
       #copiar para dist do server
