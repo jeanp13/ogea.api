@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import * as multer from 'multer';
 import { celebrate, Joi, Segments } from 'celebrate';
 import uploadConfig from '../../../configuration/upload';
 import ProductsController from '../controller/ProductsController';
 import ensureAuthenticated from '../../../middleware/auth';
+// import multer from 'multer';
+const multer = require('multer');
 
 const productsRouter = Router();
 const upload = multer(uploadConfig.multer);

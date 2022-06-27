@@ -32,7 +32,8 @@
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
     "no-useless-constructor": "off",
-    "prefer-regex-literals": "off"
+    "prefer-regex-literals": "off",
+    "@typescript-eslint/no-var-requires": "off"
   },
   "settings": {
     "import/resolver": {
