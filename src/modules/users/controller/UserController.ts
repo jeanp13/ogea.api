@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { classToClass } from 'class-transformer';
+import { instanceToPlain } from 'class-transformer';
 
 import CreateUserService from '../services/CreateUserService';
 import ShowProfileService from '../services/ShowProfileService';
@@ -19,7 +19,7 @@ export class UserController {
       storeId,
     });
 
-    return response.json({ user: classToClass(user) });
+    return response.json({ user: instanceToPlain(user) });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -32,7 +32,7 @@ export class UserController {
         user_id,
       });
 
-      return response.json({ user: classToClass(user) });
+      return response.json({ user: instanceToPlain(user) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -49,7 +49,7 @@ export class UserController {
 
       const user = await showProfile.findAll();
 
-      return response.json({ user: classToClass(user) });
+      return response.json({ user: instanceToPlain(user) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -69,7 +69,7 @@ export class UserController {
         password,
       });
 
-      return response.json({ user: classToClass(user) });
+      return response.json({ user: instanceToPlain(user) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }

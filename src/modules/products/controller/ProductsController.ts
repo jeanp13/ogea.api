@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { classToClass } from 'class-transformer';
+import { instanceToPlain } from 'class-transformer';
 import CreateProductService from '../services/CreateProductService';
 import ReturnProductService from '../services/ReturnProductService';
 import ShowProductsCategoryService from '../services/ShowProductsCategoryService';
@@ -27,7 +27,7 @@ export default class ProductsController {
         code,
       });
 
-      return response.json({ user: classToClass(user) });
+      return response.json({ user: instanceToPlain(user) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -59,7 +59,7 @@ export default class ProductsController {
         code,
       });
 
-      return response.json({ product: classToClass(product) });
+      return response.json({ product: instanceToPlain(product) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -71,7 +71,7 @@ export default class ProductsController {
 
       const products = await showProducts.execute();
 
-      return response.json({ products: classToClass(products) });
+      return response.json({ products: instanceToPlain(products) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -84,7 +84,7 @@ export default class ProductsController {
 
       const product = await showProducts.execute({ id });
 
-      return response.json({ product: classToClass(product) });
+      return response.json({ product: instanceToPlain(product) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -102,7 +102,7 @@ export default class ProductsController {
 
       const products = await showProductsCategory.execute({ category_id });
 
-      return response.json({ products: classToClass(products) });
+      return response.json({ products: instanceToPlain(products) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }

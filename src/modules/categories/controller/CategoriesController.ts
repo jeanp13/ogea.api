@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { classToClass } from 'class-transformer';
+import { instanceToPlain } from 'class-transformer';
 import CreateCategoryService from '../services/CreateCategoryService';
 import ShowCategoriesService from '../services/ShowCategoriesService';
 
@@ -15,7 +15,7 @@ export default class CategoriesController {
         title,
       });
 
-      return response.json({ category: classToClass(category) });
+      return response.json({ category: instanceToPlain(category) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
@@ -27,7 +27,7 @@ export default class CategoriesController {
 
       const categories = await showCategories.execute();
       // Object.assign
-      return response.json({ categories: classToClass(categories) });
+      return response.json({ categories: instanceToPlain(categories) });
     } catch (err) {
       return response.status(400).json({ message: err.message });
     }
