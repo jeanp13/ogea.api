@@ -1,11 +1,11 @@
-import express = require('express');
+// import express = require('express');
 // import * as express from 'express';
 // import express from 'express';
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import 'express-async-errors';
 // import * as cors from 'cors';
-import cors = require('cors');
-// import cors from 'cors';
+// import cors = require('cors');
+import cors from 'cors';
 import { AppDataSource } from './data-source';
 import config from './configuration/config';
 import uploadConfig from './configuration/upload';
