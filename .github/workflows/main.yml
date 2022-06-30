@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "."
-          target: "."
+          target: "~/test"
 
       - name: Install dependencias
         uses: appleboy/scp-action@master
@@ -50,7 +50,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           scripts: |
-            cd /www/ogea.api/
+            cd ~/test
             yarn
 
       - name: Install dependencias
