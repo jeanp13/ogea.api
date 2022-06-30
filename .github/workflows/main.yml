@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           source: "."
-          target: "/www/ogea.api/"
+          target: "."
 
       - name: Install dependencias
         uses: appleboy/scp-action@master
@@ -65,5 +65,5 @@ jobs:
       #instalar as dependencias
       #executar a build
       #copiar para dist do server
-      #instalar as dependencias no server
+      #instalar as dependencias no server 
 
